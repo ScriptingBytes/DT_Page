@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Thief — Gear Visuals</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f0f23;
+    color: #c8d6e5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    padding: 40px 20px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 4px;
+    color: #dfe6e9;
+    letter-spacing: 2px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #636e72;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .tab {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: 1px solid #2d3436;
+    background: #1a1a2e;
+    color: #636e72;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .tab:hover {
+    border-color: #5f27cd;
+    color: #a4b0c1;
+  }
+  .tab.active {
+    border-color: #5f27cd;
+    background: #5f27cd33;
+    color: #a29bfe;
+  }
+
+  .view { display: none; }
+  .view.active { display: block; }
+
+  .section-title {
+    text-align: center;
+    font-size: 20px;
+    margin: 40px 0 20px;
+    color: #a4b0c1;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .section-title:first-of-type { margin-top: 20px; }
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: #1a1a2e;
+    border-radius: 16px;
+    overflow: hidden;
+    width: 240px;
+    border: 1px solid #2d3436;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+  }
+  .card-img {
+    background: #12122a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+  }
+  .card-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .card-name {
+    padding: 12px 16px 8px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #dfe6e9;
+  }
+  .card-desc {
+    padding: 0 16px 14px;
+    font-size: 11px;
+    color: #636e72;
+    line-height: 1.5;
+  }
+  .type-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 8px;
+  }
+
+  /* Clipart grid */
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .icon {
+    background: #1a1a2e;
+    border-radius: 10px;
+    width: 120px;
+    border: 1px solid #2d3436;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+    text-align: center;
+    overflow: hidden;
+  }
+  .icon:hover {
+    transform: translateY(-2px);
+    border-color: #5f27cd;
+  }
+  .icon img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .icon-name {
+    font-size: 10px;
+    padding: 6px 4px 8px;
+    color: #a4b0c1;
+    font-weight: bold;
+  }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal.active { display: flex; }
+  .modal-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .modal-card {
+    position: relative;
+    background: #1a1a2e;
+    border-radius: 20px;
+    width: 480px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: hidden;
+    border: 1px solid #2d3436;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    animation: modalIn 0.2s ease;
+  }
+  @keyframes modalIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .modal-card .card-img { min-height: 400px; }
+  .modal-card .card-name { font-size: 20px; padding: 16px 24px 10px; }
+  .modal-card .card-desc { font-size: 13px; padding: 0 24px 20px; }
+  .modal-card .type-tag { font-size: 12px; padding: 3px 12px; }
+</style>
+</head>
+<body>
+
+<div class="modal" id="modal">
+  <div class="modal-bg" id="modalBg"></div>
+  <div class="modal-card" id="modalCard">
+    <div class="card-img"></div>
+    <div class="card-name"></div>
+    <div class="card-desc"></div>
+  </div>
+</div>
+
+<h1>✦ DREAM THIEF — GEAR VISUALS</h1>
+<p class="subtitle">Section 8.1 &amp; 8.2</p>
+
+<div class="tabs">
+  <div class="tab active" data-view="designs">Visual Designs</div>
+  <div class="tab" data-view="clipart">Clipart Icons</div>
+</div>
+
+<!-- ========== VISUAL DESIGNS VIEW ========== -->
+<div class="view active" id="view-designs">
+  <div class="section-title">— Weapons —</div>
+  <div class="gallery" data-prefix="">
+    <div class="card">
+      <div class="card-img"><img src="weapons/memory_blade.svg" alt="Memory Blade"></div>
+      <div class="card-name">Memory Blade<span class="type-tag" style="background:#5f27cd33;color:#a29bfe;">MELEE</span></div>
+      <div class="card-desc">Forged from stolen fragments. Deals bonus damage scaling with fragments carried.</div>
+    </div>
+    <div class="card">
+      <div class="card-img"><img src="weapons/frequency_lash.svg" alt="Frequency Lash"></div>
+      <div class="card-name">Frequency Lash<span class="type-tag" style="background:#00cec933;color:#81ecec;">RANGED</span></div>
+      <div class="card-desc">Fires pulses of sound that stun Shades. Long cooldown.</div>
+    </div>
+    <div class="card">
+      <div class="card-img"><img src="weapons/thought_spike.svg" alt="Thought Spike"></div>
+      <div class="card-name">Thought Spike<span class="type-tag" style="background:#e1705533;color:#fab1a0;">THROWN</span></div>
+      <div class="card-desc">Implants a false memory in a Shade — makes it ignore you for 30s.</div>
+    </div>
+    <div class="card">
+      <div class="card-img"><img src="weapons/ego_breaker.svg" alt="Ego Breaker"></div>
+      <div class="card-name">Ego Breaker<span class="type-tag" style="background:#d6303133;color:#ff7675;">HEAVY</span></div>
+      <div class="card-desc">Two-handed. Deals massive Ego damage but causes 10% Dissolution per swing.</div>
+    </div>
+    <div class="card">
+      <div class="card-img"><img src="weapons/void_needle.svg" alt="Void Needle"></div>
+      <div class="card-name">Void Needle<span class="type-tag" style="background:#6c5ce733;color:#a29bfe;">PRECISION</span></div>
+      <div class="card-desc">One-shots a Shade silently from range. Single charge per dive. Ghost only.</div>
+    </div>
+  </div>
+
+  <div class="section-title">— Tools —</div>
+  <div class="gallery" data-prefix="">
+    <div class="card">
+      <div class="card-img"><img src="weapons/lucid_torch.svg" alt="Lucid Torch"></div>
+      <div class="card-name">Lucid Torch<span class="type-tag" style="background:#fdcb6e33;color:#ffeaa7;">UTILITY</span></div>
+      <div class="card-desc">Reveals illusions, hidden paths, and invisible enemies in a cone.</div>
+    </div>
+    <div class="card">
+      <div class="card-img"><img src="weapons/mirror_shard.svg" alt="Mirror Shard"></div>
+      <div class="card-name">Mirror Shard<span class="type-tag" style="background:#6c5ce733;color:#a29bfe;">DECEPTION</span></div>
+      <div class="card-desc">Creates a moving decoy of the player that distracts enemies for 15s.</div>
+    </div>
+    <div class="card">
+      <div class="card-img"><img src="weapons/dream_anchor.svg" alt="Dream Anchor"></div>
+      <div class="card-name">Dream Anchor<span class="type-tag" style="background:#00cec933;color:#81ecec;">DEFENSE</span></div>
+      <div class="card-desc">Pauses the collapse timer for 30 seconds. Single use.</div>
+    </div>
+    <div class="card">
+      <div class="card-img"><img src="weapons/stabilizer.svg" alt="Stabilizer"></div>
+      <div class="card-name">Stabilizer<span class="type-tag" style="background:#00b89433;color:#55efc4;">CONSUMABLE</span></div>
+      <div class="card-desc">Reduces Dissolution meter by 25% instantly.</div>
+    </div>
+    <div class="card">
+      <div class="card-img"><img src="weapons/frequency_scanner.svg" alt="Frequency Scanner"></div>
+      <div class="card-name">Frequency Scanner<span class="type-tag" style="background:#a29bfe33;color:#a29bfe;">DETECTION</span></div>
+      <div class="card-desc">Pings fragment locations through walls for 10 seconds.</div>
+    </div>
+    <div class="card">
+      <div class="card-img"><img src="weapons/thought_hook.svg" alt="Thought Hook"></div>
+      <div class="card-name">Thought Hook<span class="type-tag" style="background:#a4b0c133;color:#dfe6e9;">MOVEMENT</span></div>
+      <div class="card-desc">Grapple hook that latches onto abstract dream geometry.</div>
+    </div>
+    <div class="card">
+      <div class="card-img"><img src="weapons/resonance_flare.svg" alt="Resonance Flare"></div>
+      <div class="card-name">Resonance Flare<span class="type-tag" style="background:#fdcb6e33;color:#ffeaa7;">COMBAT</span></div>
+      <div class="card-desc">Blinds all enemies in a 20-stud radius for 8 seconds.</div>
+    </div>
+    <div class="card">
+      <div class="card-img"><img src="weapons/memory_weave.svg" alt="Memory Weave"></div>
+      <div class="card-name">Memory Weave<span class="type-tag" style="background:#6c5ce733;color:#a29bfe;">ENVIRONMENT</span></div>
+      <div class="card-desc">Reshapes one room's geometry — can block enemy paths.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== CLIPART VIEW ========== -->
+<div class="view" id="view-clipart">
+  <div class="section-title">— Weapons —</div>
+  <div class="grid">
+    <div class="icon" data-name="Memory Blade" data-desc="Forged from stolen fragments. Deals bonus damage scaling with fragments carried." data-tag="MELEE" data-tag-bg="#5f27cd33" data-tag-color="#a29bfe"><img src="weapons/clipart/memory_blade.svg" alt="Memory Blade"><div class="icon-name">Memory Blade</div></div>
+    <div class="icon" data-name="Frequency Lash" data-desc="Fires pulses of sound that stun Shades. Long cooldown." data-tag="RANGED" data-tag-bg="#00cec933" data-tag-color="#81ecec"><img src="weapons/clipart/frequency_lash.svg" alt="Frequency Lash"><div class="icon-name">Frequency Lash</div></div>
+    <div class="icon" data-name="Thought Spike" data-desc="Implants a false memory in a Shade — makes it ignore you for 30s." data-tag="THROWN" data-tag-bg="#e1705533" data-tag-color="#fab1a0"><img src="weapons/clipart/thought_spike.svg" alt="Thought Spike"><div class="icon-name">Thought Spike</div></div>
+    <div class="icon" data-name="Ego Breaker" data-desc="Two-handed. Deals massive Ego damage but causes 10% Dissolution per swing." data-tag="HEAVY" data-tag-bg="#d6303133" data-tag-color="#ff7675"><img src="weapons/clipart/ego_breaker.svg" alt="Ego Breaker"><div class="icon-name">Ego Breaker</div></div>
+    <div class="icon" data-name="Void Needle" data-desc="One-shots a Shade silently from range. Single charge per dive. Ghost only." data-tag="PRECISION" data-tag-bg="#6c5ce733" data-tag-color="#a29bfe"><img src="weapons/clipart/void_needle.svg" alt="Void Needle"><div class="icon-name">Void Needle</div></div>
+  </div>
+
+  <div class="section-title">— Tools —</div>
+  <div class="grid">
+    <div class="icon" data-name="Lucid Torch" data-desc="Reveals illusions, hidden paths, and invisible enemies in a cone." data-tag="UTILITY" data-tag-bg="#fdcb6e33" data-tag-color="#ffeaa7"><img src="weapons/clipart/lucid_torch.svg" alt="Lucid Torch"><div class="icon-name">Lucid Torch</div></div>
+    <div class="icon" data-name="Mirror Shard" data-desc="Creates a moving decoy of the player that distracts enemies for 15s." data-tag="DECEPTION" data-tag-bg="#6c5ce733" data-tag-color="#a29bfe"><img src="weapons/clipart/mirror_shard.svg" alt="Mirror Shard"><div class="icon-name">Mirror Shard</div></div>
+    <div class="icon" data-name="Dream Anchor" data-desc="Pauses the collapse timer for 30 seconds. Single use." data-tag="DEFENSE" data-tag-bg="#00cec933" data-tag-color="#81ecec"><img src="weapons/clipart/dream_anchor.svg" alt="Dream Anchor"><div class="icon-name">Dream Anchor</div></div>
+    <div class="icon" data-name="Stabilizer" data-desc="Reduces Dissolution meter by 25% instantly." data-tag="CONSUMABLE" data-tag-bg="#00b89433" data-tag-color="#55efc4"><img src="weapons/clipart/stabilizer.svg" alt="Stabilizer"><div class="icon-name">Stabilizer</div></div>
+    <div class="icon" data-name="Frequency Scanner" data-desc="Pings fragment locations through walls for 10 seconds." data-tag="DETECTION" data-tag-bg="#a29bfe33" data-tag-color="#a29bfe"><img src="weapons/clipart/frequency_scanner.svg" alt="Frequency Scanner"><div class="icon-name">Frequency Scanner</div></div>
+    <div class="icon" data-name="Thought Hook" data-desc="Grapple hook that latches onto abstract dream geometry." data-tag="MOVEMENT" data-tag-bg="#a4b0c133" data-tag-color="#dfe6e9"><img src="weapons/clipart/thought_hook.svg" alt="Thought Hook"><div class="icon-name">Thought Hook</div></div>
+    <div class="icon" data-name="Resonance Flare" data-desc="Blinds all enemies in a 20-stud radius for 8 seconds." data-tag="COMBAT" data-tag-bg="#fdcb6e33" data-tag-color="#ffeaa7"><img src="weapons/clipart/resonance_flare.svg" alt="Resonance Flare"><div class="icon-name">Resonance Flare</div></div>
+    <div class="icon" data-name="Memory Weave" data-desc="Reshapes one room's geometry — can block enemy paths." data-tag="ENVIRONMENT" data-tag-bg="#6c5ce733" data-tag-color="#a29bfe"><img src="weapons/clipart/memory_weave.svg" alt="Memory Weave"><div class="icon-name">Memory Weave</div></div>
+  </div>
+</div>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      document.querySelectorAll('.view').forEach(function(v) { v.classList.remove('active'); });
+      document.getElementById('view-' + this.getAttribute('data-view')).classList.add('active');
+    });
+  });
+
+  // Modal logic
+  var modal = document.getElementById('modal');
+  var modalBg = document.getElementById('modalBg');
+  var modalCard = document.getElementById('modalCard');
+  var modalImg = modalCard.querySelector('.card-img');
+  var modalName = modalCard.querySelector('.card-name');
+  var modalDesc = modalCard.querySelector('.card-desc');
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Cards in Visual Designs view
+  document.querySelectorAll('#view-designs .card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      var src = this.querySelector('img').getAttribute('src');
+      var nameHTML = this.querySelector('.card-name').innerHTML;
+      var descText = this.querySelector('.card-desc').textContent;
+      modalImg.innerHTML = '<img src="' + src + '" alt="" style="width:100%;height:auto;display:block">';
+      modalName.innerHTML = nameHTML;
+      modalDesc.textContent = descText;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  // Icons in Clipart view
+  document.querySelectorAll('#view-clipart .icon').forEach(function(icon) {
+    icon.addEventListener('click', function() {
+      var src = this.querySelector('img').getAttribute('src');
+      var name = this.getAttribute('data-name');
+      var desc = this.getAttribute('data-desc');
+      var tag = this.getAttribute('data-tag');
+      var tagBg = this.getAttribute('data-tag-bg');
+      var tagColor = this.getAttribute('data-tag-color');
+      modalImg.innerHTML = '<img src="' + src + '" alt="" style="width:100%;height:auto;display:block">';
+      modalName.innerHTML = name + '<span class="type-tag" style="background:' + tagBg + ';color:' + tagColor + ';">' + tag + '</span>';
+      modalDesc.textContent = desc;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  modalBg.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+</body>
+</html>

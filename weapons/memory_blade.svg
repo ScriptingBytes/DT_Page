@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="blade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dfe6e9"/>
+      <stop offset="30%" stop-color="#c8d6e5"/>
+      <stop offset="60%" stop-color="#a4b0c1"/>
+      <stop offset="100%" stop-color="#576574"/>
+    </linearGradient>
+    <linearGradient id="edgeGlow" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#a29bfe" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#5f27cd" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="crossguard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7f8fa6"/>
+      <stop offset="100%" stop-color="#2d3436"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#5f27cd" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="400" height="500" rx="16" fill="url(#bg)"/>
+  <rect x="2" y="2" width="396" height="496" rx="14" fill="none" stroke="#5f27cd" stroke-width="1.5" stroke-opacity="0.4"/>
+  <text x="200" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#c8d6e5" font-weight="bold">Memory Blade</text>
+  <text x="200" y="55" text-anchor="middle" font-family="monospace" font-size="11" fill="#5f27cd">MELEE · DEFAULT</text>
+
+  <!-- Aura glow -->
+  <ellipse cx="200" cy="260" rx="70" ry="140" fill="url(#edgeGlow)" filter="url(#softGlow)"/>
+
+  <!-- Blade core -->
+  <path d="M200,90 L200,370" stroke="url(#blade)" stroke-width="6" fill="none" stroke-linecap="round" filter="url(#shadow)"/>
+  <path d="M200,90 L200,370" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.15" stroke-linecap="round"/>
+
+  <!-- Fuller (central groove) -->
+  <path d="M198,120 L198,350" stroke="#2d3436" stroke-width="2" fill="none" opacity="0.3"/>
+  <path d="M202,120 L202,350" stroke="#ffffff" stroke-width="0.5" fill="none" opacity="0.1"/>
+
+  <!-- Runic engravings along blade -->
+  <path d="M190,160 Q200,155 210,160" fill="none" stroke="#a29bfe" stroke-width="0.8" opacity="0.3"/>
+  <path d="M190,180 Q200,175 210,180" fill="none" stroke="#a29bfe" stroke-width="0.8" opacity="0.25"/>
+  <path d="M190,200 Q200,195 210,200" fill="none" stroke="#a29bfe" stroke-width="0.8" opacity="0.2"/>
+  <text x="200" y="240" text-anchor="middle" font-family="serif" font-size="7" fill="#a29bfe" opacity="0.2">✦ ✦ ✦</text>
+
+  <!-- Embedded memory crystal fragments in blade -->
+  <polygon points="200,130 205,145 195,145" fill="#a29bfe" opacity="0.5" filter="url(#glow)"/>
+  <polygon points="200,170 204,182 196,182" fill="#a29bfe" opacity="0.4" filter="url(#glow)"/>
+  <polygon points="200,210 204,220 196,220" fill="#a29bfe" opacity="0.35" filter="url(#glow)"/>
+  <polygon points="200,260 203,268 197,268" fill="#a29bfe" opacity="0.3" filter="url(#glow)"/>
+
+  <!-- Fragment core nodes -->
+  <circle cx="200" cy="138" r="2" fill="#7c4dff" opacity="0.9" filter="url(#glow)"/>
+  <circle cx="200" cy="176" r="1.8" fill="#7c4dff" opacity="0.7" filter="url(#glow)"/>
+  <circle cx="200" cy="215" r="1.5" fill="#7c4dff" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="200" cy="264" r="1.2" fill="#7c4dff" opacity="0.5" filter="url(#glow)"/>
+
+  <!-- Crossguard upper -->
+  <path d="M165,370 L235,370 L240,378 L160,378 Z" fill="url(#crossguard)"/>
+  <path d="M168,370 L232,370" stroke="#a29bfe" stroke-width="0.8" opacity="0.3"/>
+  <circle cx="175" cy="374" r="2" fill="#7c4dff" opacity="0.4"/>
+  <circle cx="225" cy="374" r="2" fill="#7c4dff" opacity="0.4"/>
+  <circle cx="200" cy="374" r="2.5" fill="#a29bfe" opacity="0.5"/>
+
+  <!-- Crossguard lower -->
+  <path d="M170,378 L230,378 L225,384 L175,384 Z" fill="#2d3436"/>
+
+  <!-- Grip wrapping -->
+  <rect x="191" y="384" width="18" height="45" rx="3" fill="#1a1a2e" stroke="#2d3436" stroke-width="1"/>
+  <path d="M192,390 Q200,394 208,390" fill="none" stroke="#576574" stroke-width="1.5" opacity="0.6"/>
+  <path d="M192,398 Q200,402 208,398" fill="none" stroke="#576574" stroke-width="1.5" opacity="0.5"/>
+  <path d="M192,406 Q200,410 208,406" fill="none" stroke="#576574" stroke-width="1.5" opacity="0.4"/>
+  <path d="M192,414 Q200,418 208,414" fill="none" stroke="#576574" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Grip rivets -->
+  <circle cx="195" cy="388" r="1" fill="#7f8fa6" opacity="0.5"/>
+  <circle cx="205" cy="388" r="1" fill="#7f8fa6" opacity="0.5"/>
+  <circle cx="195" cy="420" r="1" fill="#7f8fa6" opacity="0.3"/>
+  <circle cx="205" cy="420" r="1" fill="#7f8fa6" opacity="0.3"/>
+
+  <!-- Pommel -->
+  <ellipse cx="200" cy="432" rx="12" ry="5" fill="#576574"/>
+  <ellipse cx="200" cy="432" rx="12" ry="5" fill="none" stroke="#a29bfe" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="200" cy="435" r="4" fill="#2d3436"/>
+  <circle cx="200" cy="435" r="2" fill="#7c4dff" opacity="0.6" filter="url(#glow)"/>
+
+  <!-- Orbiting memory crystal fragments -->
+  <polygon points="125,190 132,182 140,190 132,198" fill="#7c4dff" opacity="0.5" filter="url(#glow)"/>
+  <polygon points="260,170 266,164 272,170 266,176" fill="#7c4dff" opacity="0.4" filter="url(#glow)"/>
+  <polygon points="135,320 140,314 146,320 140,326" fill="#7c4dff" opacity="0.35" filter="url(#glow)"/>
+  <polygon points="258,340 263,335 268,340 263,345" fill="#7c4dff" opacity="0.3" filter="url(#glow)"/>
+
+  <!-- Small floating particle fragments -->
+  <rect x="110" y="230" width="5" height="5" fill="#a29bfe" opacity="0.3" transform="rotate(25 112 232)" filter="url(#glow)"/>
+  <rect x="285" y="250" width="4" height="4" fill="#a29bfe" opacity="0.25" transform="rotate(40 287 252)" filter="url(#glow)"/>
+  <rect x="145" y="145" width="3" height="3" fill="#a29bfe" opacity="0.2" transform="rotate(15 146 146)" filter="url(#glow)"/>
+  <rect x="255" y="290" width="3" height="3" fill="#a29bfe" opacity="0.2" transform="rotate(55 256 291)" filter="url(#glow)"/>
+  <rect x="160" y="400" width="4" height="4" fill="#a29bfe" opacity="0.15" transform="rotate(10 162 402)"/>
+  <rect x="240" y="380" width="3" height="3" fill="#a29bfe" opacity="0.15" transform="rotate(30 241 381)"/>
+</svg>
