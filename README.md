@@ -1,4 +1,4 @@
-# Dream Thief — Gear Visuals
+# Dream Thief — Concept Art Visuals
 
 A visual gallery for the weapons and tools from **Dream Thief**, featuring detailed concept-art style SVGs and simplified clipart icons.
 
