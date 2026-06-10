@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+    <radialGradient id="pingRing" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#a29bfe" stop-opacity="0.12"/>
+      <stop offset="60%" stop-color="#a29bfe" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#a29bfe" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="deviceBody" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2d3436"/>
+      <stop offset="30%" stop-color="#4a5568"/>
+      <stop offset="70%" stop-color="#4a5568"/>
+      <stop offset="100%" stop-color="#2d3436"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="400" height="500" rx="16" fill="url(#bg)"/>
+  <rect x="2" y="2" width="396" height="496" rx="14" fill="none" stroke="#a29bfe" stroke-width="1.5" stroke-opacity="0.4"/>
+  <text x="200" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#c8d6e5" font-weight="bold">Frequency Scanner</text>
+  <text x="200" y="55" text-anchor="middle" font-family="monospace" font-size="11" fill="#a29bfe">DETECTION · INTERPRETER</text>
+
+  <!-- Ping rings -->
+  <circle cx="200" cy="210" r="100" fill="url(#pingRing)"/>
+  <circle cx="200" cy="210" r="95" fill="none" stroke="#a29bfe" stroke-width="1" stroke-dasharray="8,6" opacity="0.15"/>
+  <circle cx="200" cy="210" r="70" fill="none" stroke="#a29bfe" stroke-width="0.8" stroke-dasharray="5,4" opacity="0.1"/>
+  <circle cx="200" cy="210" r="45" fill="none" stroke="#a29bfe" stroke-width="0.6" stroke-dasharray="3,3" opacity="0.08"/>
+
+  <!-- Fragment pings through walls -->
+  <circle cx="120" cy="160" r="4" fill="#a29bfe" opacity="0.4" filter="url(#glow)"/>
+  <circle cx="120" cy="160" r="8" fill="none" stroke="#a29bfe" stroke-width="0.5" opacity="0.15"/>
+  <circle cx="280" cy="180" r="3.5" fill="#a29bfe" opacity="0.35" filter="url(#glow)"/>
+  <circle cx="280" cy="180" r="7" fill="none" stroke="#a29bfe" stroke-width="0.5" opacity="0.12"/>
+  <circle cx="130" cy="240" r="3" fill="#a29bfe" opacity="0.3" filter="url(#glow)"/>
+  <circle cx="270" cy="250" r="2.5" fill="#a29bfe" opacity="0.25" filter="url(#glow)"/>
+  <circle cx="105" cy="200" r="2" fill="#a29bfe" opacity="0.2" filter="url(#glow)"/>
+  <circle cx="290" cy="220" r="2" fill="#a29bfe" opacity="0.15" filter="url(#glow)"/>
+
+  <!-- Scanner body -->
+  <rect x="168" y="320" width="64" height="110" rx="8" fill="url(#deviceBody)" stroke="#636e72" stroke-width="1.5"/>
+
+  <!-- Scanner screen -->
+  <rect x="176" y="330" width="48" height="32" rx="3" fill="#0a0a1a" stroke="#a29bfe" stroke-width="0.8"/>
+  <!-- Screen scanline -->
+  <path d="M178,340 Q190,332 200,340 Q210,348 222,340" fill="none" stroke="#a29bfe" stroke-width="1" opacity="0.5"/>
+  <path d="M178,350 Q190,342 200,350 Q210,358 222,350" fill="none" stroke="#a29bfe" stroke-width="0.5" opacity="0.25"/>
+  <!-- Screen blips -->
+  <rect x="185" y="335" width="2" height="2" fill="#a29bfe" opacity="0.6"/>
+  <rect x="210" y="346" width="2" height="2" fill="#a29bfe" opacity="0.4"/>
+  <rect x="195" y="353" width="2" height="2" fill="#a29bfe" opacity="0.3"/>
+
+  <!-- Control buttons -->
+  <circle cx="180" cy="380" r="3.5" fill="#636e72" stroke="#a29bfe" stroke-width="0.3" opacity="0.4"/>
+  <circle cx="180" cy="380" r="1.5" fill="#a29bfe" opacity="0.15"/>
+  <circle cx="200" cy="380" r="3.5" fill="#636e72" stroke="#6c5ce7" stroke-width="0.5" opacity="0.5"/>
+  <circle cx="200" cy="380" r="1.5" fill="#6c5ce7" opacity="0.2"/>
+  <circle cx="220" cy="380" r="3.5" fill="#636e72" stroke="#a29bfe" stroke-width="0.3" opacity="0.4"/>
+  <circle cx="220" cy="380" r="1.5" fill="#a29bfe" opacity="0.15"/>
+
+  <!-- Button labels -->
+  <text x="180" y="392" text-anchor="middle" font-family="monospace" font-size="4" fill="#636e72" opacity="0.5">PWR</text>
+  <text x="200" y="392" text-anchor="middle" font-family="monospace" font-size="4" fill="#636e72" opacity="0.5">SCN</text>
+  <text x="220" y="392" text-anchor="middle" font-family="monospace" font-size="4" fill="#636e72" opacity="0.5">CLR</text>
+
+  <!-- Antenna -->
+  <rect x="197" y="288" width="6" height="32" rx="1" fill="#636e72"/>
+  <rect x="199" y="290" width="2" height="28" fill="#a4b0c1" opacity="0.2"/>
+
+  <!-- Antenna tip -->
+  <circle cx="200" cy="285" r="5" fill="#a29bfe" opacity="0.3" filter="url(#glow)"/>
+  <circle cx="200" cy="285" r="3" fill="#a29bfe" opacity="0.5"/>
+  <circle cx="200" cy="285" r="1.5" fill="#dfe6e9" opacity="0.6"/>
+
+  <!-- Grip texture -->
+  <rect x="172" y="400" width="56" height="3" rx="1" fill="#636e72" opacity="0.3"/>
+  <rect x="172" y="407" width="56" height="3" rx="1" fill="#636e72" opacity="0.2"/>
+  <rect x="172" y="414" width="56" height="3" rx="1" fill="#636e72" opacity="0.15"/>
+
+  <!-- Belt clip -->
+  <rect x="168" y="395" width="6" height="20" rx="1" fill="#2d3436"/>
+</svg>
