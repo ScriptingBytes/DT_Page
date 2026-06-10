@@ -47,9 +47,9 @@ Click any card or icon to open a larger view with a blurred-background modal.
 ## File Structure
 
 ```
+README.md
+index.html                # Gallery with tabbed views + modal
 weapons/
-├── index.html            # Gallery with tabbed views + modal
-├── README.md
 ├── *.svg                 # Detailed visual designs (13 files)
 ├── clipart/
 │   └── *.svg             # Simplified clipart icons (13 files)
